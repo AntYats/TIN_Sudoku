@@ -14,14 +14,15 @@ class Game:
     Default board is two-dimensional array 9x9 with 0
 
     Steps:
-    [1] Check if there is existing game -> Do permission to continue or to start a new game
+    [1] Do permission to continue or to start a new game
     [2] If the game is continued just start user play function, If it is not do a permission request
     -> 1) How many cells will be available to fill -> (3) -> Draw board to solve 2) Check who will solve it - user or algo
 
     (3) Generate solvable board -> Save it to the solved_board variable
     [4] From generated board randomly delete n cells with check of existing solve
-     -> Save it to the active_board variable
-    [5]
+     -> Save it to the board variable
+    [5] User should type row, col and value to fill the board. If it right, board will be saved to .pkl file
+    [6] When the board is full the game is over.
     """
 
     def __init__(self):
@@ -140,7 +141,8 @@ class Game:
 
         # Finding cell to fill
         row, col = self.check_empty_cell(board)
-
+           
+        # When there are no clean cells the board is solved
         if row is None:
             return True
 
@@ -158,7 +160,7 @@ class Game:
         return False
 
     def user_play(self):
-        """User play"""
+        """User play mode"""
         while self.check_empty_cell(self.board) != (None, None):
             # Input validation
             row, col, value = [None, None, None]
